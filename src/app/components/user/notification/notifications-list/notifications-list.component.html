@@ -1,0 +1,19 @@
+<div style="height: 100%;">
+    <div style="width: 25%; height: 100%; float: left; border: 3px solid tomato;">
+        <mat-nav-list>
+            <mat-list-item *ngFor="let not of notifications " (click)="showInfo(not.messageText) ">
+                <button mat-icon-button>
+                    {{not.fromMessage}}
+                </button>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-nav-list>
+    </div>
+    <div style="width: 75%; height: 100%; float:left; border: 3px solid purple;">
+        <!-- <app-chat-messages [toUserId]="_str"></app-chat-messages> -->
+    </div>
+</div>
+
+<!-- <ul *ngFor="let not of notifications">
+    <li>{{not.id}} - {{not.fromMessage}} - {{not.messageText}} - {{not.sentTime}}</li>
+</ul> -->

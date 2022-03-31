@@ -1,0 +1,6 @@
+<!-- <div class="container-upload">
+    <button [disabled]="disabled" [ngClass]="{'disabled': disabled}" class="button upload" (click)="inputFile.click()">UPLOAD</button>
+    <input name="file" id="file" (change)="upload($event)" type="file" #inputFile hidden>
+</div> -->
+<button class="input-group-text" [disabled]="disabled" [ngClass]="{'disabled': disabled}" (click)="inputFile.click()"><i class="fa fa-upload "></i></button>
+<input name="file" id="file" (change)="upload($event)" type="file" #inputFile hidden>

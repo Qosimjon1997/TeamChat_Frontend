@@ -1,0 +1,46 @@
+<div style="height: 100%;">
+    <!-- <div style="height: 5%; width: 100%; border: 3px solid yellowgreen;" class="div-searching">
+        <input type="text" class="searching-textbox" placeholder="Search">
+    </div> -->
+    <div style="height: 100%; width: 100%; ">
+        <div style="width: 6%; height: 100%;  background-color: #E8F1F3; float: left; ">
+            <div class="example-button-container">
+                <!-- <div class="myIcon-div-button">
+                    <button mat-fab color="primary" class="myIcon-button" (click)="btnNotications_click()">
+                        <mat-icon>notifications</mat-icon>
+                    </button>
+                </div> -->
+                <!-- <div class="myIcon-div-button">
+                    <button mat-fab color="primary" class="myIcon-button" (click)="btnVideoRoom_click()">
+                        <mat-icon>videocam</mat-icon>
+                    </button>
+                </div> -->
+                <div class="myIcon-div-button">
+                    <button mat-fab color="primary" class="myIcon-button" (click)="btnMessages_click()">
+                        <mat-icon>chat_bubble</mat-icon>
+                    </button>
+                </div>
+                <div class="myIcon-div-button">
+                    <button mat-fab color="primary" class="myIcon-button" [matMenuTriggerFor]="menu">
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="btnResetPassword_click()">
+                            <mat-icon>lock_open</mat-icon>
+                          <span>Reset password</span>
+                        </button>
+                        <button mat-menu-item (click)="btnExit()">
+                          <mat-icon>exit_to_app</mat-icon>
+                          <span>Exit</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+        <div style="height: 100%; width: 94%; float: left;">
+            <!-- <app-notifications-list></app-notifications-list> -->
+            <app-user-chat-list></app-user-chat-list>
+            <!-- <app-test></app-test> -->
+        </div>
+    </div>
+</div>

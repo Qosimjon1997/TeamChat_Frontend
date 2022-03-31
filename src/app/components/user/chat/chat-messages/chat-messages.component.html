@@ -1,0 +1,45 @@
+<div class="chat">
+    <div class="chat-header clearfix">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="chat-about">
+                    <h1><b>{{selectedUser.fio}}</b></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-history" #scrollMe>
+        <ul class="m-b-0" *ngFor="let msg of allMessages">
+
+            <li class="clearfix">
+                <div class="message-data" [ngClass]="msg.fromMessage==_myUser? 'text-right' : ''">
+                    <span class="message-data-time">{{msg.sentTime}}</span>
+                </div>
+                <div class="message " [ngClass]="msg.fromMessage==_myUser? 'float-right other-message' : 'my-message'">
+                    <div *ngIf="msg.isFile">
+                        <app-download [disabled]="showProgress" [fileName]="msg.filePath" (downloadStatus)="downloadStatus($event)"></app-download>
+                    </div>
+                    {{msg.messageText}}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="chat-message clearfix ">
+        <div class="input-group mb-0 " style="width: 100%;">
+            <div class="input-group-prepend " style="width: 5%;">
+                <!-- <button class="input-group-text" [disabled]="disabled" [ngClass]="{'disabled': disabled}" (click)="inputFile.click()"><i class="fa fa-upload "></i></button>
+                <input name="file" id="file" (change)="upload($event)" type="file" #inputFile hidden> -->
+                <app-upload [disabled]="showProgress" (myfile)="myfile($event)" (uploadStatus)="uploadStatus($event)"></app-upload>
+            </div>
+            <form name="form" (ngSubmit)="sendMessage_click()" #f="ngForm" novalidate style="width: 90%;">
+                <input type="text " class="form-control " placeholder="Enter text here... " name="messageText" [(ngModel)]="form.messageText" required #messageText="ngModel">
+            </form>
+            <div class="input-group-prepend " style="width: 5%;" (click)="sendMessage_click()">
+                <button class="input-group-text"><i class="fa fa-send "></i></button>
+            </div>
+        </div>
+    </div>
+
+</div>

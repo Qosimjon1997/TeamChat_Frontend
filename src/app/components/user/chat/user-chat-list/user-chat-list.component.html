@@ -1,0 +1,18 @@
+<div style="height: 100%;">
+    <div style="width: 25%; height: 100%; float: left; overflow-y: scroll;">
+        <div id="plist" class="people-list">
+            <ul class="list-unstyled chat-list mt-2 mb-0" *ngFor="let user of users">
+                <li class="clearfix" (click)="showInfo(user.id)" style="border-bottom: 0.5px solid #E8F1F3;">
+                    <div class="about">
+                        <div class="name">{{user.fio}}</div>
+                        <!-- <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div> -->
+
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="width: 75%; height: 100%; float:left;">
+        <app-chat-messages [toUserId]="_str"></app-chat-messages>
+    </div>
+</div>

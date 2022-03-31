@@ -1,0 +1,10 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <h2 class="active"> Sign In </h2>
+        <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <input type="text" class="fadeIn second" placeholder="login" name="username" [(ngModel)]="form.username" required #username="ngModel" />
+            <input type="password" class="fadeIn third" name="password" placeholder="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel" />
+            <button class="fadeIn fourth btnLogIn">Log In</button>
+        </form>
+    </div>
+</div>

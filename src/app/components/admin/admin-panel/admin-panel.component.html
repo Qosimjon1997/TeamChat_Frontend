@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+    <span>Admin Panel</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" (click)="btnPersonClick()">
+        <mat-icon>person</mat-icon>
+    </button>
+    <!-- <button mat-icon-button class="example-icon" (click)="btnVideoClick()">
+        <mat-icon>videocam</mat-icon>
+    </button> -->
+    <button mat-icon-button class="example-icon favorite-icon" (click)="btnResetPassword_Click()">
+        <mat-icon>lock_open</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" (click)="btnExitClick()">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
