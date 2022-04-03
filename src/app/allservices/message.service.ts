@@ -2,7 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { isPropertyAccessOrQualifiedName } from 'typescript';
 import { Message } from '../interfaces/message';
+import { Uniquemessageiddto } from '../interfaces/uniquemessageiddto';
 
 
 const httpOptions = {
@@ -19,19 +21,34 @@ export class MessageService {
   constructor(private http : HttpClient) { }
 
   getAllData(fromId : string, toId : string): Observable<Message[]> {  
-    return this.http.get<Message[]>(`${AUTH_API + 'GetAllMessagesFromUsers?fromId='}${fromId}&toId=${toId}`)  
+    return this.http.get<Message[]>(`${AUTH_API + 'getallmessagesfromusers?fromId='}${fromId}&toId=${toId}`)  
       .pipe(  
         catchError(this.handleError)  
       );  
   } 
 
-  addMessage(fromMessage : string, toMessage : string, isFile : boolean, messageText : string, filePath : string): Observable<any> {
+  getAllDidNotReadData(toId : string): Observable<Message[]> {  
+    return this.http.get<Message[]>(`${AUTH_API + 'getalldidnotread?toId='}${toId}`)  
+      .pipe(  
+        catchError(this.handleError)  
+      );  
+  } 
+
+  getUniqueIdMessage(toId : string): Observable<Uniquemessageiddto[]> {  
+    return this.http.get<Uniquemessageiddto[]>(`${AUTH_API + 'getalldidnotreadguid?toId='}${toId}`)  
+      .pipe(  
+        catchError(this.handleError)  
+      );  
+  }
+
+  addMessage(fromMessage : string, toMessage : string, isFile : boolean, messageText : string, isRead : boolean, filePath : string): Observable<any> {
     return this.http.post(AUTH_API + 'addmessage', {
       fromMessage,
       toMessage,
       isFile,
       messageText,
-      filePath
+      filePath,
+      isRead
     }, httpOptions);
   }
 

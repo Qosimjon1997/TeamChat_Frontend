@@ -99,9 +99,10 @@ export class ChatMessagesComponent implements OnInit, AfterViewChecked  {
         const fromMessage = this._myUser;
         const toMessage = this._toUserId;
         const isFile = true;
-        const filePath = data[0]
+        const filePath = data[0];
+        const isRead = false;
 
-        this.messageService.addMessage(fromMessage,toMessage,isFile,messageText,filePath).subscribe({
+        this.messageService.addMessage(fromMessage,toMessage,isFile,messageText,isRead,filePath).subscribe({
           next: data => {
             this.scrollToBottom();
             this.openSnackBar('File uploaded');
@@ -187,9 +188,10 @@ export class ChatMessagesComponent implements OnInit, AfterViewChecked  {
       const fromMessage = this._myUser;
       const toMessage = this._toUserId;
       const isFile = false;
+      const isRead = false;
       const filePath = '';
       
-      this.messageService.addMessage(fromMessage,toMessage,isFile,messageText,filePath).subscribe({
+      this.messageService.addMessage(fromMessage,toMessage,isFile,messageText,isRead,filePath).subscribe({
         next: data => {
           this.form.messageText = '';
           this.scrollToBottom();

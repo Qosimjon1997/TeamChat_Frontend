@@ -1,9 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as signalR from '@microsoft/signalr'; 
 import { AuthService } from 'src/app/allservices/auth.service';
+import { MessageService } from 'src/app/allservices/message.service';
 import { TokenStorageService } from 'src/app/allservices/token-storage.service';
-import { Employeereaddto } from 'src/app/interfaces/employeereaddto';
+import { Employeedidnotreaddto } from 'src/app/interfaces/employeedidnotreaddto';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,13 +14,14 @@ import { environment } from 'src/environments/environment';
 })
 export class UserChatListComponent implements OnInit {
 
-  users : Employeereaddto[] = [];
+  users : Employeedidnotreaddto[] = [];
   errorMessage : string = '';
  
-  constructor(private router : Router,private userService:AuthService, private tokenStorage: TokenStorageService,) { }
+  constructor(private messageService : MessageService, private router : Router,private userService:AuthService, private tokenStorage: TokenStorageService,) { }
 
   ngOnInit(): void {
     this.getUsersData();
+    
 
     const connection = new signalR.HubConnectionBuilder()
       .configureLogging(signalR.LogLevel.Information)
@@ -46,16 +48,20 @@ export class UserChatListComponent implements OnInit {
     );
   }
 
-   _str : string =this.tokenStorage.getUser().id;
+  readMessage(fromId:string, toId:string){
+    this.userService.readMessageFromUser(fromId,toId).subscribe(
+      answare => {
+        console.log(answare);
+      }
+    )
+  }
 
+   _str : string =this.tokenStorage.getUser().id;
   showInfo(str : string)
   {
     this._str = str;
-    // this.router.navigate(['user-panel/chat'])
-    // .then(nav=>{
-    //   console.log(nav);
-    // },err=>{
-    //   console.log(err)
-    // });
+    console.log(str);
+    console.log(this.tokenStorage.getUser().id);
+    this.readMessage(str, this.tokenStorage.getUser().id);
   }
 }

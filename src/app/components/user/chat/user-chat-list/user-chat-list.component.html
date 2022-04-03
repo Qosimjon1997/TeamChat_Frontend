@@ -3,10 +3,9 @@
         <div id="plist" class="people-list">
             <ul class="list-unstyled chat-list mt-2 mb-0" *ngFor="let user of users">
                 <li class="clearfix" (click)="showInfo(user.id)" style="border-bottom: 0.5px solid #E8F1F3;">
-                    <div class="about">
+                    <div class="about" style="height: 35px;">
                         <div class="name">{{user.fio}}</div>
-                        <!-- <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div> -->
-
+                        <div class="status" *ngIf="user.isRead"><i class="fa fa-circle offline"></i></div>
                     </div>
                 </li>
             </ul>

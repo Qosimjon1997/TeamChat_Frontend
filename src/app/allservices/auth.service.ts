@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Employee } from '../interfaces/employee';
+import { Employeedidnotreaddto } from '../interfaces/employeedidnotreaddto';
 import { Employeereaddto } from '../interfaces/employeereaddto';
 
 
@@ -58,13 +59,20 @@ export class AuthService {
       );  
   } 
 
-  getAllUsersForUser(id : string): Observable<Employeereaddto[]> { 
-    const url = `${AUTH_API + 'getallemployeeforuser?id='}${id}`;  
-    return this.http.get<Employee[]>(url)  
+  getAllUsersForUser(id : string): Observable<Employeedidnotreaddto[]> { 
+    const url = `${AUTH_API + 'getallemployeeforuserwithmessages?id='}${id}`;  
+    return this.http.get<Employeedidnotreaddto[]>(url)  
       .pipe(  
         catchError(this.handleError)  
       ); 
   } 
+
+  readMessageFromUser(fromId: string, toId: string): Observable<any> {
+    return this.http.post(AUTH_API + 'updatemessagesofuser', {
+      fromId,
+      toId
+    }, httpOptions);
+  }
 
   getSelectedUserById(id : string): Observable<Employeereaddto> { 
     const url = `${AUTH_API + 'getselecteduser?id='}${id}`;  

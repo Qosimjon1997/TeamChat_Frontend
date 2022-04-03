@@ -5,5 +5,6 @@ export interface Message {
     isFile : boolean,
     messageText : string,
     sentTime : string,
+    isread : boolean,
     filePath : string
 }
